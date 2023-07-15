@@ -1,1 +1,396 @@
+Write a c program to check whether a given string is palindrome or not
 
+Test case example:
+---------------------
+case=t1
+input=madam
+output=palindrome
+
+case=t2
+input=abcd
+output=not a palindrome
+
+case=t3
+input=121
+output=palindrome
+
+case=t4
+input=&%*&
+output=invalid data
+
+PROGRAM:
+---------------
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char str[100];
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+
+   
+    str[strcspn(str, "\n")] = '\0';
+
+    
+    for (int i = 0; i <strlen(str); i++) 
+    {
+        if (!isalnum(str[i])) 
+        {
+            printf("invalid data");
+            return 0;
+        }
+    }
+
+    int start = 0;
+    int end = strlen(str) - 1;
+
+    while (start < end) {
+        if (tolower(str[start]) != tolower(str[end])) {
+            printf(" not a palindrome.\n");
+            return 0;
+        }
+
+        start++;
+        end--;
+    }
+
+    printf(" palindrome.\n");
+
+    return 0;
+}
+
+2. For all of its products, a supermarket maintains a pricing structure. Each product has a value N printed on it. 
+The price of the item is determined by multiplying the value N, which is read by the scanner, by the sum of all its digits. 
+The goal here is to create software that, given the code of any item N, will compute the product (multiplication) of all the value digits (price).
+
+TEST CASE Example 1:
+case=t1
+input=34567
+output=2520
+
+case=t2
+input=5244
+output=160
+
+PROGRAM:
+-------------------
+#include<stdio.h>
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    int res=1;
+          while(n>0)
+          {
+                res=res*(n%10);
+                n=n/10;
+           }
+            printf("%d",res);
+    }
+3. Write a program to Count number of zeros, positives and negatives entered using do while.
+enter a number first and then keep asking the user the choice(yes or no) If the user enters either Y or y.
+keep entering the next number until user presses 'N or n'
+
+
+Testcase example:
+------------------
+case=t1
+input=5
+y
+0
+Y
+-6
+n
+output=
+Zeroes = 1
+Negatives = 1
+Positives = 1
+
+case=t2
+input=10
+Y
+-100
+y
+50
+y
+00
+n
+output=
+Zeroes = 1
+Negatives = 1
+Positives = 2
+
+PROGRAM:
+-----------------
+ #include<stdio.h>
+ #include<stdlib.h>
+ int main()
+ {
+ int num,pos=0,neg=0,zero=0;
+ char choice;
+  do
+  {
+    scanf("%d",&num);
+    if(num==0)
+    zero++;
+    else if(num<0)
+    neg++;
+    else if(num>0)
+    pos++;
+   int c;
+   c=getchar();
+     //while((c=getchar())!='\n');
+   scanf("%c",&choice);
+   }while (choice == 'Y' || choice == 'y');
+   printf("Zeroes = %d\n",zero);
+   printf("Negatives = %d\n",neg);
+   printf("Positives = %d\n",pos);
+   return 0;
+   }
+
+4.Write a program to generate all combinations of 1, 2 and 3 using forloop.
+Testcase example:
+------------------
+case=t1
+input=
+output=
+123, 132, 213, 231, 312, 321, are the all possible combinations of 1,2 and 3.
+
+PROGRAM:
+----------------
+#include<stdio.h>
+
+   int main()
+   {
+int i,j,k;
+for(i=1;i<=3;i++)
+{
+	for(j=1;j<=3;j++)
+	{
+		for(k=1;k<=3;k++)
+		{
+			if(i==j || i==k || j==k)
+				continue;
+			  printf("%d%d%d ", i, j, k);
+		}
+	}
+}
+printf("are the all possible combinations of 1,2 and 3.");
+return 0;
+ }
+
+5. If a five-digit number is input through the keyboard, write a program print a new number by adding one to each of its digits.
+ For example if the number that is input is 12391 then the output should be displayed as 23402.
+TEST CASES:
+----------------
+case=t1
+input= 12391
+output=
+23502
+
+case=t2
+input=15642
+output=
+26753
+
+case=t3
+Fail message="Oops Check your program. This test case didnt match!!"
+input=19232
+output=30343
+
+case=t4
+input=10026
+output=21137
+
+PROGRAM:
+---------------------
+#include <stdio.h>
+int main() 
+{
+    int n, on, nn = 0, d, m = 1;
+
+    //printf("Enter a number: ");
+    scanf("%d", &n);
+ 
+    on = n;
+
+    while (n > 0) 
+    {
+        d = n % 10;
+        nn = nn+ (d + 1) * m;
+        n = n/10;
+        m =m* 10;
+    }
+
+    printf("%d", nn);
+
+    return 0;
+}
+
+6. The Body Mass Index (BMI) is defined as ratio of the weight of a person (in kilograms) to the square of the height (in meters).
+Write a program that receives weight and height, calculates the BMI, and reports the BMI category as per the following table:
+Note: Table is attached!
+
+Testcase example:
+-----------------------
+case=t1
+input=45
+1.5
+output=
+"Your BMI category is : Ideal"
+
+case=t2
+input=75
+2.5
+output=
+"Your BMI category is : Starvation"
+
+case=t3
+input=35 
+1.5
+output=
+"Your BMI category is : Anorexic"
+
+case=t4
+input=70
+1.7
+output=
+"Your BMI category is : Ideal"
+
+PROGRAM:
+-------------------
+#include<stdio.h>
+  int main()
+  {
+  float w, h, bmi;
+scanf("%f %f", &w, &h);
+
+bmi = w / (h * h);
+
+printf("Your BMI category is : ");
+
+if(bmi < 15)
+	printf("Starvation");
+	
+if(bmi >= 15.1 && bmi <= 17.5)
+	printf("Anorexic");
+	
+if(bmi >= 17.6 && bmi <= 18.5)
+	printf("Underweight");
+	
+if(bmi >= 18.6 && bmi <= 24.9)
+	printf("Ideal");
+	
+if(bmi >= 25 && bmi <= 25.9)
+	printf("Overweight");
+	
+if(bmi >= 30 && bmi <= 30.9)
+	printf("Obese.");
+	
+if(bmi >= 40)
+	printf("Morbidly Obese");
+return 0;
+}
+
+7. A positive integer d is said to be a factor of another positive integer N if when N is divided by d, 
+the remainder obtained is zero. For example, for number 12, there are 6 factors 1, 2, 3, 4, 6, 12. 
+Every positive integer k has at least two factors, 1 and the number k itself.
+Given two positive integers N and k, your job is to print the kth largest factor of N.
+If N does not have k factors, print error message accordingly as given in the test case example below.
+TEST CASES:
+-------------------
+case=t1
+input=
+20 3
+output=The 3th largest factor of 20 is 5
+
+case=t2
+input=20 4
+output=The 4th largest factor of 20 is 4
+
+case=t3
+input=9 5
+output="The number 9 does not have 5 factors"
+
+PROGRAM:
+-----------------------
+#include <stdio.h>
+int main() 
+{
+    int N, k;
+    int factorCount = 0;
+    scanf("%d %d", &N,&k);
+    for (int i = N; i >= 1; i--) 
+    {
+        if (N % i == 0)
+        {
+            factorCount++;
+
+            if (factorCount == k) 
+            {
+        printf("The %dth largest factor of %d is %d", k, N, i);
+                break;
+            }
+        }
+    }
+
+    if (factorCount < k)
+    {
+        printf("The number %d does not have %d factors\n", N, k);
+    }
+
+    return 0;
+}
+
+8. A positive integer d is said to be a factor of another positive integer N if when N is divided by d, 
+the remainder obtained is zero. For example, for number 12, there are 6 factors 1, 2, 3, 4, 6, 12. 
+Every positive integer k has at least two factors, 1 and the number k itself.
+Given two positive integers N and k, your job is to print the kth largest factor of N.
+If N does not have k factors, print error message accordingly as given in the test case example below.
+TESTCASES:
+---------------
+case=t1
+input=
+20 3
+output=The 3th largest factor of 20 is 5
+
+case=t2
+input=20 4
+output=The 4th largest factor of 20 is 4
+
+case=t3
+input=9 5
+output="The number 9 does not have 5 factors"
+
+PROGRAM:
+--------------------
+#include <stdio.h>
+
+int main() 
+{
+    int N, k;
+    int factorCount = 0;
+    scanf("%d %d", &N,&k);
+    for (int i = N; i >= 1; i--) 
+    {
+        if (N % i == 0)
+        {
+            factorCount++;
+
+            if (factorCount == k) 
+            {
+        printf("The %dth largest factor of %d is %d", k, N, i);
+                break;
+            }
+        }
+    }
+
+    if (factorCount < k)
+    {
+        printf("The number %d does not have %d factors\n", N, k);
+    }
+
+    return 0;
+}
