@@ -1,1 +1,500 @@
+1. The Hailstone sequence is based on the theory is that you can perform a specific calculation on any positive integer to create a series of numbers.
+No matter which positive integer you start with, eventually the sequence ends with the value 1.
+The math in the Hailstone sequence is interesting.
 
+The Hailstone Sequence works like this, starting with any positive integer:
+
+If the value is 1, then the sequence is over and print 1.
+If the value is even, then the next number in the sequence is equal to half the value: n/2
+If the value is odd, then the next number is equal to three times the value, plus one: (n*3)+
+
+Write a Recursive C function to find the Hailstone Sequence of a given number up to 1.
+
+
+Testcase example:
+------------------------
+case=t1
+input=23
+output=
+The hailstone sequence starting at 23 is: 
+ 23  70  35  106  53  160  80  40  20  10  5  16  8  4  2 1 
+
+case=t2
+fail message="input is 1"
+input=1
+output=The hailstone sequence starting at 1 is: 
+1 
+
+case=t3
+input=15
+output=The hailstone sequence starting at 15 is: 
+ 15  46  23  70  35  106  53  160  80  40  20  10  5  16  8  4  2 1 
+
+case=t4
+fail message="input is 10"
+input=10
+10
+output=The hailstone sequence starting at 10 is: 
+ 10  5  16  8  4  2 
+
+PROGRAM:
+----------------
+#include<stdio.h>
+void HailstoneSequence(int n) 
+{
+  printf("%d ", n); 
+
+  if (n == 1) 
+  {
+    return; 
+  }
+  if (n % 2 == 0) 
+  {
+    HailstoneSequence(n / 2); 
+  }
+  else 
+    HailstoneSequence((3 * n) + 1); 
+}
+int main()
+{
+   int aNum;
+
+   scanf("%d", &aNum);
+
+   printf("The hailstone sequence starting at %d is: \n", aNum);
+   HailstoneSequence(aNum);
+      return 0;
+}
+
+2. Write a C program to find the palindrome or not using recursive approach.
+int palindrome(char* str, int i, int j)
+{
+    //the function accepts the string, i and j values indicate start and ending characters.
+    //note the function returns 1 if i value is either greater or equal to j
+    //the function returns 0 if the string is not a palindrome
+}
+
+
+Testcase example:
+-------------------------
+case=t1
+input=MAdaM
+output=The string is a palindrome.
+
+
+case=t1
+input=1221
+output=The string is a palindrome.
+
+case=t3
+fail message="hidden case"
+input=malAyalam
+output=The string is a palindrome.
+
+case=t4
+fail message="hidden case"
+input=civic
+output=The string is a palindrome.
+
+
+case=t5
+fail message="hidden case"
+input=123
+output=The string is not a palindrome.
+PROGRAM:
+---------------------
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+int palindrome(char* str, int i, int j)
+{
+   
+    if (i >= j) 
+    {
+        return 1;
+    }
+    char ch1=toupper(str[i]);
+    char ch2=toupper(str[j]);
+    
+    if (ch1!= ch2) 
+    {
+        return 0;
+    }
+    return palindrome(str, i+ 1, j- 1);
+}
+
+int main() {
+    char str[100];
+    fgets(str, sizeof(str), stdin);
+    str[strcspn(str, "\n")] = '\0'; 
+
+    if (palindrome(str, 0, strlen(str) - 1))
+    {
+        printf("The string is a palindrome.");
+    } else 
+    {
+        printf("The string is not a palindrome.");
+    }
+
+    return 0;
+}
+
+3. Write a 'C' program to accept customer details such as: Account_no (minimum 6 digits, maximum 15 digits), Name, Balance using structure.
+Assume 3 customers in the bank. Write a function to print the account no. and name of each customer whose balance < 500 Rs.
+
+//use the structure template given below and complete the program
+struct bank
+{
+    int acc_no;
+    char name[20];
+    int bal;
+};
+
+//use the following function to complete the program
+
+void balancelessthan500(struct bank b[], int n)
+{
+    int i;
+    for (i = 0; i < n; i++)
+    {
+     
+        }
+    }
+}
+
+Testcase example:
+------------------
+case=t1
+input=3435
+ARUN
+500
+3455445
+AKASH
+450
+4355433
+ABHI
+350
+output=
+Account Number : 3455445
+Name           : AKASH
+Balance        : 450
+------------------------------
+Account Number : 4355433
+Name           : ABHI
+Balance        : 350
+------------------------------
+
+case=t2
+input=12345
+AKASH
+450
+23
+ARUN
+450
+53455445
+ABHI
+500000
+output=
+Account Number : 012345
+Name           : AKASH
+Balance        : 450
+------------------------------
+Account Number : 000023
+Name           : ARUN
+Balance        : 450
+------------------------------
+
+case=t3
+fail message="hidden test case"
+input=454
+ARUN
+10000
+644554
+AKASH
+450
+123
+ABHI
+50000
+output=Account Number : 644554
+Name           : AKASH
+Balance        : 450
+------------------------------
+
+case=t4
+input=
+123
+arun
+450
+456
+akash
+350
+4554344
+abhi
+600
+output=
+Account Number : 000123
+Name           : arun
+Balance        : 450
+------------------------------
+Account Number : 000456
+Name           : akash
+Balance        : 350
+------------------------------
+
+
+PROGRAM:
+-----------------------------------
+#include <stdio.h>
+#include <string.h>
+struct bank
+{
+    int acc_no;
+    char name[20];
+    int bal;
+};
+void balancelessthan500(struct bank b[], int n)
+{
+    int i;
+    for (i = 0; i < n; i++)
+    {
+        if (b[i].bal < 500)
+        {
+            printf("Account Number : %06d\n", b[i].acc_no);
+            printf("Name           : %s\n", b[i].name);
+            printf("Balance        : %d\n", b[i].bal);
+            printf("------------------------------\n");
+        }
+    }
+}
+
+int main()
+{
+    struct bank b[3];
+    int i;
+
+    for (i = 0; i < 3; i++)
+    {
+        scanf("%d", &b[i].acc_no);
+        scanf("%s", b[i].name);
+        scanf("%d", &b[i].bal);
+    }
+
+    balancelessthan500(b, 3);
+
+    return 0;
+}
+
+4. Write a C program to Reverse String using Recursion and Pointer.
+char* ReverseOfString(char*)
+{
+    //update your code here
+    return revstr;
+}
+  
+Testcase example:
+------------------------
+case=t1
+input=arun kumar
+output=ramuk nura
+
+case=t2
+input=griet college
+output=egelloc teirg
+
+case=t3
+fail message="Hidden test case"
+input=c programming language
+output=egaugnal gnimmargorp c
+
+PROGRAM:
+---------------------------
+#include<stdio.h>
+#define MAX 100
+char* ReverseOfString(char*);
+
+int main()
+{
+
+    char str1[MAX],*revstr;
+    scanf("%[^\n]",str1);
+
+    revstr = ReverseOfString(str1);
+
+    printf("%s",revstr);
+    return 0;
+}
+char* ReverseOfString(char* str1)
+{
+    static int i=0;
+    static char revstr[MAX];
+    if(*str1)
+    {
+         ReverseOfString(str1+1);
+         revstr[i++] = *str1;
+    }
+    return revstr;
+}
+
+5. Write a Recursive c program to Find the first capital letter in a string.
+char capital(char* str)
+{
+    if (*str == '\0')
+    {
+        return 0;  
+    }
+
+  //complete the remaining recursive code
+}
+TESTCASES:
+------------------
+case=t1
+input=thisisLife
+output=First capital letter found: L
+
+case=t2
+input=arunkumarKongi
+output=First capital letter found: K
+
+case=t3
+Fail message="error: input contains numbers"
+input=12345
+output=No capital letter found.
+
+case=t4
+Fail message="general case"
+input=thegooners
+output=No capital letter found.
+
+PROGRAM:
+-------------------
+#include <stdio.h>
+#include<ctype.h>
+#include<string.h>
+char capital(char* str)
+{
+    if (*str == '\0')
+    {
+        return 0;  
+    }
+
+    if (isupper(*str))
+    {
+        return *str;  
+    }
+
+    return capital(str + 1);
+}
+
+int main()
+{
+    char str[100];
+
+    //printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+
+    char res = capital(str);
+    if (res != 0)
+    {
+        printf("First capital letter found: %c", res);
+    }
+    else
+    {
+        printf("No capital letter found.\n");
+    }
+
+    return 0;
+}
+
+6. Given the following structure template. Calculate the Runrate of a team based on the batting
+performances of the entered player details.
+Input Format: Read n, indicating how many number of players batted. (Maximum 11 batters)
+              In the next line, Read the name of the player, Total runs scored and total balls faced(for each player)
+              Finally calculate the run rate using the formula given below:
+              
+              runrate = totalRuns / totalBalls * BALLS_PER_OVER;
+//use the structure template given below and complete the program
+
+
+#define MAX_PLAYERS 11
+#define BALLS_PER_OVER 6
+
+struct Player
+{
+    char name[20];
+    int runsScored;
+    int ballsFaced;
+};
+
+TESTCASES:
+-------------------
+case=t1
+input=3
+ViratKohli 56 45
+YuvrajSingh 78 34
+MsDhoni 45 23
+output=
+Total Runs: 179
+Total Balls Faced: 102
+Run Rate: 10.53
+
+case=t2
+input=5
+arun 67 56
+akash 45 18
+abhi 78 45
+tharun 23 12
+vivek 67 34
+output=
+Total Runs: 280
+Total Balls Faced: 165
+Run Rate: 10.18
+
+case=t2
+fail message="hidden test case"
+input=3
+gill 100 45
+jaiswal 45 20
+ruturaj 56 30
+output=
+Total Runs: 201
+Total Balls Faced: 95
+Run Rate: 12.69
+
+PROGRAM:
+------------------
+#include <stdio.h>
+
+#define MAX_PLAYERS 11
+#define BALLS_PER_OVER 6
+
+struct Player
+{
+    char name[20];
+    int runsScored;
+    int ballsFaced;
+};
+
+int main() 
+{
+    struct Player team[MAX_PLAYERS];
+    int totalRuns = 0;
+    int totalBalls = 0;
+    int totalPlayers;
+
+   
+    scanf("%d", &totalPlayers);
+    for (int i = 0; i < totalPlayers; i++)
+    {
+        scanf("%s%d%d", team[i].name,&team[i].runsScored,&team[i].ballsFaced);
+        totalRuns += team[i].runsScored;
+        totalBalls += team[i].ballsFaced;
+    }
+
+    float runrate = (float)totalRuns / totalBalls*BALLS_PER_OVER;
+
+    printf("Total Runs: %d\n", totalRuns);
+    printf("Total Balls Faced: %d\n", totalBalls);
+    printf("Run Rate: %.2f\n", runrate);
+
+    return 0;
+}
